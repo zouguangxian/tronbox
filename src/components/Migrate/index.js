@@ -53,6 +53,7 @@ Migration.prototype.run = function (options, callback) {
 
         if (options.save === false) return;
 
+        try {
         const Migrations = resolver.require('./Migrations.sol');
 
         if (Migrations && Migrations.isDeployed()) {
@@ -66,6 +67,8 @@ Migration.prototype.run = function (options, callback) {
           // return Migrations.deployed().then(function (migrations) {
           //   return Migrations.call('setCompleted', [self.number]);
           // });
+        }
+        } catch(e) {
         }
       })
       .then(function () {
